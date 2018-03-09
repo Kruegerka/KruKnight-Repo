@@ -21,6 +21,8 @@
  static double maxZ;
  static double minZ;
  static int numOfFacets=0;
+ void compareX(double num);
+ bool compareWord(string word, string refword);
 
  int main(int argc, char** argv){
 
@@ -47,8 +49,8 @@
                     stringStreamIn >> word;
                     cout << "Vertex" + numOfFacets <<endl;
                     cout << "X:" << setw(4) << word << endl;
-                    currentNum = strtof(word.c_str,0);
-                    compareX(currentNum);
+                    //currentNum = stod(word.c_str, NULL);
+                    //compareX(currentNum);
                 }
             }
 

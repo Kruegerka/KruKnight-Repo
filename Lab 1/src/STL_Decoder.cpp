@@ -11,7 +11,7 @@
  #include <fstream>
  #include <sstream>
  #include <iomanip>
-
+ 
  using namespace std;
 
  static double maxX;
@@ -59,7 +59,7 @@
  }
 
 bool compareWord(string word, string refword){
-    if(word.find(refword)== string::npos){
+    if(word.find(refword) == string::npos){
         return false;
     }
     return true;

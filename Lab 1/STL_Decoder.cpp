@@ -41,15 +41,22 @@
             while(stringStreamIn){
                 std::string word;
                 stringStreamIn >> word;
-                if(compareWord(word, "facet")){
+                int numOfVertex;
+                //Checks to see if the word is Facet, then it prints out the facet number and addes to the count
+                if(compareWord(word, "facet") && !compareWord(word, "endfacet")){
                     numOfFacets++;
+                    std::cout <<std::endl << "Facet: " << numOfFacets <<std::endl;
+                    numOfVertex = 0;
+                }
+                else if(compareWord(word, "vertex")){
                     double currentNum;
-                    stringStreamIn.ignore(8);
+                    std::cout << std::setw(4) << "Vertex: " << numOfVertex << std::endl;
                     stringStreamIn >> word;
-                    std::cout << "Vertex" + numOfFacets <<std::endl;
-                    std::cout << "X:" << std::setw(4) << word << std::endl;
-                    //currentNum = stod(word.c_str, NULL);
-                    //compareX(currentNum);
+                    std::cout << std::setw(6) << "X:" << word << std::endl;
+                    currentNum = std::stod(word.c_str(), NULL);
+                    compareX(currentNum);
+
+                    numOfVertex++;
                 }
             }
 

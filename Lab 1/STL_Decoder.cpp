@@ -12,7 +12,6 @@
  #include <sstream>
  #include <iomanip>
  
- using namespace std;
 
  static double maxX;
  static double minX;
@@ -22,33 +21,33 @@
  static double minZ;
  static int numOfFacets=0;
  void compareX(double num);
- bool compareWord(string word, string refword);
+ bool compareWord(std::string word, std::string refword);
 
  int main(int argc, char** argv){
 
     //Checks to see if File was imported
     if(argc < 2){
-        cout << "Filename Was Not Entered" << endl;
+        std::cout << "Filename Was Not Entered" << std::endl;
     }
     else{
-        string importedFile = argv[1];
-        ifstream filein(importedFile.c_str());
+        std::string importedFile = argv[1];
+        std::ifstream filein(importedFile.c_str());
         
         while(filein){
-            string currentLine;
+            std::string currentLine;
             getline(filein, currentLine);
-            istringstream stringStreamIn(currentLine);
+            std::istringstream stringStreamIn(currentLine);
             
             while(stringStreamIn){
-                string word;
+                std::string word;
                 stringStreamIn >> word;
                 if(compareWord(word, "facet")){
                     numOfFacets++;
                     double currentNum;
                     stringStreamIn.ignore(8);
                     stringStreamIn >> word;
-                    cout << "Vertex" + numOfFacets <<endl;
-                    cout << "X:" << setw(4) << word << endl;
+                    std::cout << "Vertex" + numOfFacets <<std::endl;
+                    std::cout << "X:" << std::setw(4) << word << std::endl;
                     //currentNum = stod(word.c_str, NULL);
                     //compareX(currentNum);
                 }
@@ -60,8 +59,8 @@
     return 0;
  }
 
-bool compareWord(string word, string refword){
-    if(word.find(refword) == string::npos){
+bool compareWord(std::string word, std::string refword){
+    if(word.find(refword) == std::string::npos){
         return false;
     }
     return true;

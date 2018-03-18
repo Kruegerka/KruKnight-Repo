@@ -138,7 +138,7 @@ class matrix
 		// as a 1-D dynamic array, thus the double* below.  Alternatively, and
 		// perhaps preferred, you could store the data as an array of arrays
 		// which would require the_Matrix to be changed to a double**.
-		double* the_matrix;
+		double** the_matrix;
 		unsigned int rows;
 		unsigned int cols;
 

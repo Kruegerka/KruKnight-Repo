@@ -29,7 +29,31 @@ class matrixException:public std::runtime_error
 		               message).c_str()) {}
 };
  
- 
+
+class matrixrow
+{
+	public:
+		matrixrow(double * row, unsigned int cols) {
+			this->row = row;
+			this->cols = cols;
+		}
+
+		double& operator[](unsigned int col)
+		{
+			if (col < cols)
+			{
+				return row[col];
+			}
+			else
+			{
+				throw matrixException("invalid column on index operator");
+			}
+		}
+	private:
+		double * row;
+		unsigned int cols;
+};
+
 class matrix
 {
 	public:
@@ -120,14 +144,14 @@ class matrix
 		//
 		// throw (matrixException)
 		//
-		double* operator[](unsigned int row);
+		matrixrow operator[](unsigned int row);
  
 		// const version of above - throws an exception if indices are out of
 		// range
 		//
 		// throw (matrixException)
 		//
-		double* operator[](unsigned int row) const;
+		matrixrow operator[](unsigned int row) const;
  
 		// I/O - for convenience - this is intended to be called by the global
 		// << operator declared below.

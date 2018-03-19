@@ -25,7 +25,20 @@ matrix::matrix(unsigned int rows, unsigned int cols):rows(rows),cols(cols)
 matrix::matrix(const matrix& from):rows(from.rows),cols(from.cols)
 {
 	// stub
-	the_matrix = from;
+	the_matrix = new double* [rows];
+	for(int i=0; i < rows; i++){
+		the_matrix[i] = new double [cols];
+		for(int j=0; j < cols; j++){
+			the_matrix[i][j] = 0;
+		}
+
+	}
+
+	for(int i=0; i < rows; i++){
+		for(int j=0; j < cols; j++){
+			the_matrix[i][j] = from.the_matrix[i][j];
+		}
+	}
 	
 }
 
@@ -42,6 +55,16 @@ matrix::~matrix()
 // Assignment operator
 matrix& matrix::operator=(const matrix& rhs)
 {
+	rows = rhs.rows;
+	cols = rhs.cols;
+	the_matrix = new double* [rows];
+	for(int i=0; i < rows; i++){
+		the_matrix[i] = new double [cols];
+		for(int j=0; j < cols; j++){
+			the_matrix[i][j] = 0;
+		}
+
+	}
 	// stub
 	for(int i=0; i < rows; i++){
 		for(int j=0; j < cols; j++){
@@ -62,17 +85,16 @@ matrix matrix::identity(unsigned int size)
 // Binary operations
 matrix matrix::operator+(const matrix& rhs) const
 {
-	// stub
+
+	matrix retVal(rhs);
 	if(rhs.cols != cols && rhs.rows != rows){
 		throw matrixException("Martix Add- not same size matrix");
 	}
 	for(int i=0; i < rows; i++){
 		for(int j=0; j < cols; j++){
-			the_matrix[i][j] = the_matrix[i][j] + rhs[i][j];
+			retVal.the_matrix[i][j] = the_matrix[i][j] + rhs.the_matrix[i][j];
 		}
-
 	}
-	matrix retVal(rhs);
 	return retVal;
 }
 
@@ -103,7 +125,6 @@ matrix matrix::operator~() const
 
 void matrix::clear()
 {
-	// stub
 	for(int i=0; i < rows; i++){
 		for(int j=0; j < cols; j++){
 			the_matrix[i][j] = 0;
@@ -113,22 +134,31 @@ void matrix::clear()
 	return;
 }
 
-double* matrix::operator[](unsigned int row)
+matrixrow matrix::operator[](unsigned int row)
 {
-	// stub
-	return NULL;
+	if (row < rows) {
+		return matrixrow(the_matrix[row],cols);
+	}
+	else
+	{
+		throw matrixException("invalid row on index operator");
+	}
 }
 
-double* matrix::operator[](unsigned int row) const
+matrixrow matrix::operator[](unsigned int row) const
 {
-	// stub
-	return NULL;
+	if (row < rows) {
+		return matrixrow(the_matrix[row],cols);
+	}
+	else
+	{
+		throw matrixException("invalid row on index operator");
+	}
 }
 
 
 std::ostream& matrix::out(std::ostream& os) const
 {
-	// stub
 	for(int i=0; i < rows; i++){
 		os<< "|" << std::setw(3);
 		for(int j=0; j < cols; j++){
@@ -145,16 +175,14 @@ std::ostream& matrix::out(std::ostream& os) const
 // Global insertion and operator
 std::ostream& operator<<(std::ostream& os, const matrix& rhs)
 {
-	// stub
 	return rhs.out(os);
 }
 
 // Global scalar multiplication
 matrix operator*(const double scale, const matrix& rhs)
 {
-	// stub
 	matrix retval(rhs);
-	return retval;
+	return (retval * scale);
 }
 
 

@@ -32,5 +32,20 @@ int main(void)
 		cout << "m4 - exception expected and thrown" << endl;
 	}
 	
-	return 0;
-}		
+	cout << "M5" << endl;
+	matrix m5(3,3);
+	m5 = m3;
+	cout << m5 << endl;
+
+	cout << "M6" << endl;
+	m5.clear();
+	cout << m5 << endl;
+
+	cout << "M7" << endl;
+	~m3;
+	cout << m3 << endl;
+	cout << 3*m3 << endl;
+	cout << m3[0][0] << endl;
+
+
+}

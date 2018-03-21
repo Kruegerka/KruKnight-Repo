@@ -3,7 +3,12 @@
 #include <cmath>
 #include <iomanip>
 
-// Parameterized constructor
+
+/** 
+ * @brief Default constructor for matrix object
+ * @param  rows: numbers of matrix rows
+ * @param  cols: number of matrix columns
+ */
 matrix::matrix(unsigned int rows, unsigned int cols) : rows(rows), cols(cols)
 {
 	if (rows < 1 || cols < 1)
@@ -22,10 +27,12 @@ matrix::matrix(unsigned int rows, unsigned int cols) : rows(rows), cols(cols)
 	}
 }
 
-// Copy constructor
+/** 
+ * @brief  constructor used to copy a matrix into a new matrix object
+ * @param  &from: Matrix to be copied
+ */
 matrix::matrix(const matrix &from) : rows(from.rows), cols(from.cols)
 {
-	// stub
 	the_matrix = new double *[rows];
 	for (int i = 0; i < rows; i++)
 	{
@@ -45,10 +52,11 @@ matrix::matrix(const matrix &from) : rows(from.rows), cols(from.cols)
 	}
 }
 
-// Destructor
+/** 
+ * @brief  Used to delete the matrix array
+ */
 matrix::~matrix()
 {
-	// stub
 	for (int i = 0; i < rows; i++)
 	{
 		delete[] the_matrix[i];
@@ -56,7 +64,11 @@ matrix::~matrix()
 	delete[] the_matrix;
 }
 
-// Assignment operator
+/** 
+ * @brief  assigns a matrix to the current objects
+ * @param  &rhs: matrix being asigned
+ * @retval current object's matrix
+ */
 matrix &matrix::operator=(const matrix &rhs)
 {
 	rows = rhs.rows;
@@ -70,7 +82,6 @@ matrix &matrix::operator=(const matrix &rhs)
 			the_matrix[i][j] = 0;
 		}
 	}
-	// stub
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
@@ -81,10 +92,13 @@ matrix &matrix::operator=(const matrix &rhs)
 	return *this;
 }
 
-// Named constructor (static)
+/** 
+ * @brief  Generates an identity matrix of a given size
+ * @param  size: size of the matrix
+ * @retval returns the generated matrix
+ */
 matrix matrix::identity(unsigned int size)
 {
-	// use p-constructor
 	matrix retval(size, size);
 	for (int i = 0; i < size; i++)
 	{
@@ -93,7 +107,11 @@ matrix matrix::identity(unsigned int size)
 	return retval;
 }
 
-// Binary operations
+/** 
+ * @brief  Used to added two matries
+ * @param  &rhs: matrix to added to the current object
+ * @retval return sum of two matries
+ */
 matrix matrix::operator+(const matrix &rhs) const
 {
 
@@ -112,9 +130,13 @@ matrix matrix::operator+(const matrix &rhs) const
 	return retVal;
 }
 
+/** 
+ * @brief  used to multiply two matrixes
+ * @param  &rhs: matrix to be multplied
+ * @retval return the multiplied matrixed
+ */
 matrix matrix::operator*(const matrix &rhs) const
 {
-	// stub
 	matrix retVal(rows, rhs.cols);
 	if (cols != rhs.rows)
 	{
@@ -134,9 +156,13 @@ matrix matrix::operator*(const matrix &rhs) const
 	return retVal;
 }
 
+/** 
+ * @brief  multiplies the matrix by the scale
+ * @param  scale: scale to multiply each number in the matrix
+ * @retval scaled matrix
+ */
 matrix matrix::operator*(const double scale) const
 {
-	// stub
 	matrix retVal(*this);
 	for (int i = 0; i < rows; i++)
 	{
@@ -148,10 +174,12 @@ matrix matrix::operator*(const double scale) const
 	return retVal;
 }
 
-// Unary operations
+/** 
+ * @brief  Transulates the Matrix
+ * @retval Translated matrix
+ */
 matrix matrix::operator~() const
 {
-	// stub
 	matrix retVal(*this);
 	if (rows != cols)
 	{
@@ -167,6 +195,9 @@ matrix matrix::operator~() const
 	return retVal;
 }
 
+/** 
+ * @brief  Clears the matrix
+ */
 void matrix::clear()
 {
 	for (int i = 0; i < rows; i++)
@@ -179,6 +210,11 @@ void matrix::clear()
 	return;
 }
 
+/** 
+ * @brief  returns the value at that index 
+ * @param  row: row with of the value
+ * @retval value
+ */
 matrixrow matrix::operator[](unsigned int row)
 {
 	if (row < rows)
@@ -191,6 +227,11 @@ matrixrow matrix::operator[](unsigned int row)
 	}
 }
 
+/** 
+ * @brief  returns the value at that index 
+ * @param  row: row with of the value
+ * @retval value
+ */
 matrixrow matrix::operator[](unsigned int row) const
 {
 	if (row < rows)
@@ -203,6 +244,11 @@ matrixrow matrix::operator[](unsigned int row) const
 	}
 }
 
+/** 
+ * @brief  Prints out the matrix
+ * @param  &os:  output stream
+ * @retval output stream
+ */
 std::ostream &matrix::out(std::ostream &os) const
 {
 	for (int i = 0; i < rows; i++)

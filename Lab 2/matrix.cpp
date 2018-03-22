@@ -148,7 +148,7 @@ matrix matrix::operator*(const matrix &rhs) const
 		{
 			for (int k = 0; k < cols; k++)
 			{
-				retVal.the_matrix[i][j] = the_matrix[i][k] * rhs.the_matrix[k][j];
+				retVal.the_matrix[i][j] += the_matrix[i][k] * rhs.the_matrix[k][j];
 			}
 		}
 	}

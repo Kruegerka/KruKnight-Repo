@@ -23,51 +23,70 @@ GraphicsContext::~GraphicsContext()
  * Parameters:
  * 	x0, y0 - origin of line
  *  x1, y1 - end of line
- * 
+ *
  * Returns: void
  */
 void GraphicsContext::drawLine(int x0, int y0, int x1, int y1)
 {
-	
+
 	// find slope
 	int dx = x1-x0;
 	int dy = y1-y0;
-	
-	// make sure we actually have a line
-	if (dx != 0 || dy !=0)
+
+	if (std::abs(dx) > std::abs(dy))
 	{
-		// slope < 1?
-		if (std::abs(dx)>std::abs(dy))
-		{	// iterate over x
-			double slope = (double)dy/dx;
-			
-			// x increment - need to know which way to go
-			int incx = std::abs(dx)/dx;  // will be 1 or -1
-			
-			for (int x = x0; x != x1; x += incx)
+		if (x1 > x0)
+		{
+			int yi = 1;
+			if ( dy < 0)
 			{
-				setPixel(x,y0+slope*(x-x0));
+				yi = -1;
+				dy = -dy;
 			}
-			
-			// loop ends on iteration early - catch endpoint
-			setPixel(x1,y1);
-		} // end of if |slope| < 1 
-		else 
-		{	// iterate over y
-			double slope = (double)dx/dy;
-			
-			// x increment - need to know which way to go
-			int incy = std::abs(dy)/dy;  // will be 1 or -1
-			
-			for (int y = y0; y != y1; y += incy)
+			int D = 2*dy - dx;
+			int y = y0;
+			for (int x = x0; x < x1; x++)
 			{
-				setPixel(x0+slope*(y-y0),y);
+				setPixel(x,y);
+				if (D>0){
+					y+=yi;
+					D-=2*dx;
+				}
+				D = D + 2*dy;
 			}
-			
-			// loop ends on iteration early - catch endpoint
-			setPixel(x1,y1);
-		} // end of else |slope| >= 1
-	} // end of if it is a real line (dx!=0 || dy !=0)
+		}
+		else
+		{
+			drawLine(x1,y1,x0,y0);
+		}
+	} else
+	{
+		if (y1>y0)
+		{
+			int xi = 1;
+			if (dx < 0) {
+				xi = -1;
+				dx = -dx;
+			}
+			int D = 2*dx - dy;
+			int x = x0;
+			for (int y = y0; y < y1; y++)
+			{
+				setPixel(x,y);
+				if (D>0)
+				{
+					x = x + xi;
+					D = D - 2*dy;
+				}
+				D = D + 2*dx;
+			}
+		}
+		else
+		{
+			drawLine(x1,y1,x0,y0);
+		}
+	}
+
 	return;
 }
 
@@ -85,28 +104,35 @@ void GraphicsContext::drawLine(int x0, int y0, int x1, int y1)
  */
 void GraphicsContext::drawCircle(int x0, int y0, unsigned int radius)
 {
-	// This is a naive implementation that draws many line
-	// segments.  Also uses floating point math for poor performance
+	int x = radius - 1;
+	int y = 0;
+	int dx = 1;
+	int dy = 1;
+	int error = dx - (radius <<1);
 
-	// also, large circles will be "jagged"
-	
-	// start at 0 degrees
-	int oldx = radius;
-	int oldy = 0;
+	while(x >= y){
+		setPixel(x0+x, y0+y);
+		setPixel(x0+y, y0+x);
+		setPixel(x0-y, y0+x);
+		setPixel(x0-x, y0+y);
+		setPixel(x0-x, y0-y);
+		setPixel(x0-y, y0-x);
+		setPixel(x0+y, y0-x);
+		setPixel(x0+x, y0-y);
 
-	// go from 1 to 360 degrees
-	for (int segment =1; segment<=360; segment += 1)
-	{
-		int newx = std::cos(segment*M_PI/180)*radius;
-		int newy = std::sin(segment*M_PI/180)*radius;
+		if(error <= 0){
+			y++;
+			error += dy;
+			dy += 2;
+		}
 
-		// hit four quadrants
-		drawLine(x0+oldx,y0+oldy,x0+newx,y0+newy);
-		
-		oldx = newx;
-		oldy = newy;
-		
+		if(error > 0){
+			x--;
+			dx += 2;
+			error += dx - (radius << 1);
+		}
 	}
+	
 	
 	return;	
 }

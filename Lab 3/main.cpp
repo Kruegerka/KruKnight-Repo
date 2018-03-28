@@ -1,11 +1,25 @@
 #include "x11context.h"
 #include <unistd.h>
+#include <ctime>
+#include <cstdlib>
 #include <iostream>
  
 int main(void)
 {
 	GraphicsContext* gc = new X11Context(800,600,GraphicsContext::BLACK);
- 
+	srand(time(0));
+	for(int i =0; i<20; i++){
+		gc->setColor(GraphicsContext::GREEN);
+		gc->drawLine(rand()%500,rand()%500,rand()%500,rand()%500);
+		gc->drawLine(rand()%500,rand()%500,rand()%500,rand()%500);
+
+		gc->setColor(GraphicsContext::RED);
+		gc->drawLine(rand()%500,rand()%500,rand()%500,rand()%500);
+
+		gc->setColor(GraphicsContext::YELLOW);
+		gc->drawCircle(rand()%500,rand()%500,rand()%500);
+	}
+
  
 	// draw some lines
 	gc->setColor(GraphicsContext::GREEN);

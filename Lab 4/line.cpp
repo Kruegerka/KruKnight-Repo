@@ -11,5 +11,6 @@ Line::Line(const Line& from) : Shape(from){
 
 
 void Line::draw(GraphicsContext* gContext){
+    gContext->setColor(shapeColor);
     gContext->drawLine(p1[0][0],p1[0][1],p2[0][0],p2[0][1]);
 }

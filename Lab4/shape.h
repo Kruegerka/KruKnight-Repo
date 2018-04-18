@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <string>
 #include "gcontext.h"
 #include "matrix.h"
 
@@ -17,11 +18,9 @@ class Shape{
         Shape(const Shape& from);
         Shape();
         std::ostream out(std::ostream &os) const;
-        std::istream in(std::istream &os) const;
-        std::ofstream fileOut(std::ofstream &os) const;
-        std::ifstream fileIn(std::ifstream &os) const;
+        std::istream in(std::istream &is) const;
         virtual void draw(GraphicsContext* gContext)=0;
-};
 
+};
 
 #endif

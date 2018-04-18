@@ -33,14 +33,10 @@ std::ostream Triangle::out(std::ostream &os) const
 {
 }
 
-std::istream Triangle::in(std::istream &os) const
+std::istream Triangle::in(std::istream &is) const
 {
 }
 
-std::ofstream Triangle::fileOut(std::ofstream &os) const
-{
-}
-
-std::ifstream Triangle::fileIn(std::ifstream &os) const
-{
+Shape* Triangle::clone(){
+    return new Triangle(*this);
 }

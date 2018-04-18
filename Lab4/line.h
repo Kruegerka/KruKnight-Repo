@@ -13,9 +13,8 @@ class Line: public Shape{
         Line(const Line& from);
         void draw(GraphicsContext* gContext);
         std::ostream out(std::ostream &os) const;
-        std::istream in(std::istream &os) const;
-        std::ofstream fileOut(std::ofstream &os) const;
-        std::ifstream fileIn(std::ifstream &os) const;
+        std::istream in(std::istream &is) const;
+        Shape* clone();
 
 };
 

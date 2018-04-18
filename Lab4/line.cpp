@@ -28,14 +28,10 @@ std::ostream Line::out(std::ostream &os) const
 {
 }
 
-std::istream Line::in(std::istream &os) const
+std::istream Line::in(std::istream &is) const
 {
 }
 
-std::ofstream Line::fileOut(std::ofstream &os) const
-{
-}
-
-std::ifstream Line::fileIn(std::ifstream &os) const
-{
+Shape* Line::clone(){
+    return new Line(*this);
 }

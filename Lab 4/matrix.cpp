@@ -3,7 +3,6 @@
 #include <cmath>
 #include <iomanip>
 
-
 /**
  * @brief Default constructor for matrix object
  * @param  rows: numbers of matrix rows

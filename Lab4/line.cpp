@@ -11,6 +11,10 @@ Line::Line(const Line &from) : Shape(from)
     p2 = from.p2;
 }
 
+Line::~Line(){
+
+}
+
 void Line::draw(GraphicsContext *gContext)
 {
     gContext->setColor(shapeColor);
@@ -24,12 +28,47 @@ Line &Line::operator=(const Line &rhs)
     p2 = rhs.p2;
 }
 
-std::ostream Line::out(std::ostream &os) const
+std::ostream Line::out(std::ostream &os)
 {
+    int x;
+    int y;
+    int z;
+    os << "L ";
+    x = p1[0][0];
+    y = p1[0][1];
+    z = p1[0][2];
+    os << x << " ";
+    os << y << " ";
+    os << z << " ";
+    x = p2[0][0];
+    y = p2[0][1];
+    z = p2[0][2];
+    os << x << " ";
+    os << y << " ";
+    os << z << " ";
 }
 
-std::istream Line::in(std::istream &is) const
+std::istream Line::in(std::istream &is)
 {
+    std::string str;
+    int x;
+    int y;
+    int z;
+    is >> shapeColor; 
+    is >> x;
+    is >> y;
+    is >> z;
+    p1[0][0] = x;
+    p1[0][1] = y;
+    p1[0][2] = z;
+    p1[0][3] = 1.0;
+    is >> x;
+    is >> y;
+    is >> z;
+    p2[0][0] = x;
+    p2[0][1] = y;
+    p2[0][2] = z;
+    p2[0][3] = 1.0;
 }
 
 Shape* Line::clone(){

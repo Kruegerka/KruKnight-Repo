@@ -12,13 +12,14 @@ class Shape{
         unsigned int shapeColor;
         matrix p1 = matrix(4,1);
         Shape& operator=(const Shape& rhs);
-
+        
     public:
+        ~Shape();
         Shape(unsigned int Color,matrix &point1);
         Shape(const Shape& from);
         Shape();
-        std::ostream out(std::ostream &os) const;
-        std::istream in(std::istream &is) const;
+        std::ostream out(std::ostream &os);
+        std::istream in(std::istream &is);
         virtual void draw(GraphicsContext* gContext)=0;
 
 };

@@ -11,6 +11,9 @@ Shape::Shape(const Shape &from)
 {
     shapeColor = from.shapeColor;
 }
+Shape::~Shape(){
+    
+}
 
 Shape &Shape::operator=(const Shape &rhs)
 {
@@ -18,11 +21,12 @@ Shape &Shape::operator=(const Shape &rhs)
     p1 = rhs.p1;
 }
 
-std::ostream Shape::out(std::ostream &os) const
+std::ostream Shape::out(std::ostream &os)
 {
     int x;
     int y;
     int z;
+    os << "S ";
     x = p1[0][0];
     y = p1[0][1];
     z = p1[0][2];
@@ -32,14 +36,13 @@ std::ostream Shape::out(std::ostream &os) const
 
 }
 
-std::istream Shape::in(std::istream &is) const
+std::istream Shape::in(std::istream &is)
 {
     std::string str;
     int x;
     int y;
     int z;
     is >> shapeColor; 
-    shapeColor = std::stoul(&str,0,10);
     is >> x;
     is >> y;
     is >> z;

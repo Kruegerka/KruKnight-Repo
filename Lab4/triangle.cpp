@@ -13,6 +13,11 @@ Triangle::Triangle(const Triangle &from) : Shape(from)
     p3 = from.p3;
 }
 
+Triangle::~Triangle()
+{
+
+}
+
 void Triangle::draw(GraphicsContext *gContext)
 {
     gContext->setColor(shapeColor);
@@ -29,12 +34,61 @@ Triangle &Triangle::operator=(const Triangle &rhs)
     p3 = rhs.p3;
 }
 
-std::ostream Triangle::out(std::ostream &os) const
+std::ostream Triangle::out(std::ostream &os)
 {
+    int x;
+    int y;
+    int z;
+    os << "T ";
+    x = p1[0][0];
+    y = p1[0][1];
+    z = p1[0][2];
+    os << x << " ";
+    os << y << " ";
+    os << z << " ";
+    x = p2[0][0];
+    y = p2[0][1];
+    z = p2[0][2];
+    os << x << " ";
+    os << y << " ";
+    os << z << " ";
+    x = p3[0][0];
+    y = p3[0][1];
+    z = p3[0][2];
+    os << x << " ";
+    os << y << " ";
+    os << z << " ";
 }
 
-std::istream Triangle::in(std::istream &is) const
+std::istream Triangle::in(std::istream &is)
 {
+    std::string str;
+    int x;
+    int y;
+    int z;
+    is >> shapeColor; 
+    is >> x;
+    is >> y;
+    is >> z;
+    p1[0][0] = x;
+    p1[0][1] = y;
+    p1[0][2] = z;
+    p1[0][3] = 1.0;
+    is >> x;
+    is >> y;
+    is >> z;
+    p2[0][0] = x;
+    p2[0][1] = y;
+    p2[0][2] = z;
+    p2[0][3] = 1.0;
+    is >> x;
+    is >> y;
+    is >> z;
+    p3[0][0] = x;
+    p3[0][1] = y;
+    p3[0][2] = z;
+    p3[0][3] = 1.0;
+    
 }
 
 Shape* Triangle::clone(){

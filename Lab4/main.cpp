@@ -23,6 +23,8 @@ int main(void)
 	m3[0][0] = 500;
 	Triangle t1 = Triangle(0x00FFF0, m1, m2, m3);
 	t1.draw(gc);
+	//l1.out(std::cout);
+	//t1.out(std::cout);
 	sleep(5);
 
 	delete gc;

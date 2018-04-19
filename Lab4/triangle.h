@@ -5,8 +5,8 @@
 
 class Triangle: public Shape{
     protected:
-        matrix p2 = matrix(4,1);
-        matrix p3 = matrix(4,1);
+        matrix p2 = matrix(1,4);
+        matrix p3 = matrix(1,4);
         Triangle& operator=(const Triangle& rhs);
         
     public:

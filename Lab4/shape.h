@@ -15,7 +15,7 @@
 class Shape{
     protected:
         unsigned int shapeColor;
-        matrix p1 = matrix(4,1);
+        matrix p1 = matrix(1,4);
         Shape& operator=(const Shape& rhs);
         
     public:

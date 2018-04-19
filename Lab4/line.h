@@ -10,7 +10,7 @@
 
 class Line: public Shape{
     protected:
-        matrix p2 = matrix(4,1);
+        matrix p2 = matrix(1,4);
         Line& operator=(const Line& rhs);
         
 

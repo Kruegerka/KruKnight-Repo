@@ -12,9 +12,10 @@ Image::Image(const Image& from){
 }
 
 Image::~Image(){
-    //for(unsigned int i = 0; i<shapeList.size(); i++){
-        //delete shapeList[i];
-    //}
+    for(Shape* i: shapeList){
+        delete i;
+    }
+    shapeList.clear();
 }
 
 Image &Image::operator=(const Image &rhs) {
@@ -23,7 +24,8 @@ Image &Image::operator=(const Image &rhs) {
 }
 
 void Image::add(Shape* addShape) {
-    shapeList.push_back((Shape*)addShape->clone());
+    //shapeList.push_back((Shape*)addShape->clone());
+    shapeList.push_back(addShape);
 }
 
 void Image::draw(GraphicsContext* gContext) {
@@ -40,16 +42,17 @@ void Image::out(std::ostream &os) {
 
 void Image::in(std::istream &is) {
     std::string str;
-    Shape* s;
-    while(is){
-        is >> str;
+    while(is >> str){
         if(str.compare("L") == 0){
-            s = new Line();
+            std::cout << "ITS FUCKEN LINE";
+            std::cout << str;
+            Line* s = new Line();
             s->in(is);
             this->add(s);
         }
-        if(str.compare("T") == 0){
-            s = new Triangle();
+        else if(str.compare("T") == 0){
+             std::cout << "HELLO THERE";
+            Triangle* s = new Triangle();
             s->in(is);
             this->add(s);
         }

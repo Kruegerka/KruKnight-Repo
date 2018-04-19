@@ -28,6 +28,7 @@ Shape &Shape::operator=(const Shape &rhs)
 
 void Shape::out(std::ostream &os)
 {
+/*
     int x;
     int y;
     int z;
@@ -39,11 +40,12 @@ void Shape::out(std::ostream &os)
     os << x << " ";
     os << y << " ";
     os << z << " ";
-
+*/
 }
 
 void Shape::in(std::istream &is)
 {
+    /*
     std::string str;
     int x;
     int y;
@@ -56,6 +58,6 @@ void Shape::in(std::istream &is)
     p1[0][1] = y;
     p1[0][2] = z;
     p1[0][3] = 1.0;
-    
+    */
 }
 

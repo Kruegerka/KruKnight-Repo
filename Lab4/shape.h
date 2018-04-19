@@ -1,3 +1,8 @@
+/** 
+ * @Kruegerka
+ * IMAGE.H
+ */
+
 #ifndef SHAPE
 #define SHAPE
 
@@ -14,14 +19,14 @@ class Shape{
         Shape& operator=(const Shape& rhs);
         
     public:
-        ~Shape();
+        virtual ~Shape();
         Shape(unsigned int Color,matrix &point1);
         Shape(const Shape& from);
         Shape();
-        std::ostream out(std::ostream &os);
-        std::istream in(std::istream &is);
+        virtual void out(std::ostream &os)=0;
+        virtual void in(std::istream &is)=0;
         virtual void draw(GraphicsContext* gContext)=0;
-
+        virtual Shape* clone() = 0;
 };
 
 #endif

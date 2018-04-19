@@ -15,6 +15,10 @@ Line::~Line(){
 
 }
 
+Line::Line(){
+
+}
+
 void Line::draw(GraphicsContext *gContext)
 {
     gContext->setColor(shapeColor);
@@ -26,14 +30,16 @@ Line &Line::operator=(const Line &rhs)
     shapeColor = rhs.shapeColor;
     p1 = rhs.p1;
     p2 = rhs.p2;
+    return *this;
 }
 
-std::ostream Line::out(std::ostream &os)
+void Line::out(std::ostream &os)
 {
     int x;
     int y;
     int z;
     os << "L ";
+    os << shapeColor << " ";
     x = p1[0][0];
     y = p1[0][1];
     z = p1[0][2];
@@ -48,9 +54,8 @@ std::ostream Line::out(std::ostream &os)
     os << z << " ";
 }
 
-std::istream Line::in(std::istream &is)
+void Line::in(std::istream &is)
 {
-    std::string str;
     int x;
     int y;
     int z;

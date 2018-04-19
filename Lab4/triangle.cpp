@@ -1,5 +1,10 @@
 #include "triangle.h"
 
+
+Triangle::Triangle(){
+
+}
+
 Triangle::Triangle(unsigned int pColor,  matrix &point1, matrix &point2, matrix &point3) : Shape(pColor, point1)
 {
     p2 = point2;
@@ -32,14 +37,16 @@ Triangle &Triangle::operator=(const Triangle &rhs)
     p1 = rhs.p1;
     p2 = rhs.p2;
     p3 = rhs.p3;
+    return *this;
 }
 
-std::ostream Triangle::out(std::ostream &os)
+void Triangle::out(std::ostream &os)
 {
     int x;
     int y;
     int z;
     os << "T ";
+    os << shapeColor << " ";
     x = p1[0][0];
     y = p1[0][1];
     z = p1[0][2];
@@ -60,9 +67,8 @@ std::ostream Triangle::out(std::ostream &os)
     os << z << " ";
 }
 
-std::istream Triangle::in(std::istream &is)
+void Triangle::in(std::istream &is)
 {
-    std::string str;
     int x;
     int y;
     int z;

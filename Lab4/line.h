@@ -1,3 +1,8 @@
+/** 
+ * @Kruegerka
+ * LINE.H
+ */
+
 #ifndef LINE
 #define LINE
 
@@ -10,12 +15,13 @@ class Line: public Shape{
         
 
     public:
+        Line();
         ~Line();
         Line(unsigned int pColor,matrix &point1,matrix &point2);
         Line(const Line& from);
         void draw(GraphicsContext* gContext);
-        std::ostream out(std::ostream &os);
-        std::istream in(std::istream &is);
+        void out(std::ostream &os);
+        void in(std::istream &is);
         Shape* clone();
 
 };

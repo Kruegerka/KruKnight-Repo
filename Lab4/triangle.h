@@ -11,11 +11,12 @@ class Triangle: public Shape{
         
     public:
         ~Triangle();
+        Triangle();
         Triangle(unsigned int pColor, matrix &point1, matrix &point2, matrix &point3);
         Triangle(const Triangle& from);
         void draw(GraphicsContext* gContext);
-        std::ostream out(std::ostream &os);
-        std::istream in(std::istream &is);
+        void out(std::ostream &os);
+        void in(std::istream &is);
         Shape* clone();
 };
 

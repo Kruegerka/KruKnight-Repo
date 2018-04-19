@@ -10,23 +10,29 @@ Shape::Shape(unsigned int Color, matrix &point1)
 Shape::Shape(const Shape &from)
 {
     shapeColor = from.shapeColor;
+    p1 = from.p1;
 }
+
 Shape::~Shape(){
-    
+}
+
+Shape::Shape(){
 }
 
 Shape &Shape::operator=(const Shape &rhs)
 {
     shapeColor = rhs.shapeColor;
     p1 = rhs.p1;
+    return *this;
 }
 
-std::ostream Shape::out(std::ostream &os)
+void Shape::out(std::ostream &os)
 {
     int x;
     int y;
     int z;
     os << "S ";
+    os << shapeColor;
     x = p1[0][0];
     y = p1[0][1];
     z = p1[0][2];
@@ -36,7 +42,7 @@ std::ostream Shape::out(std::ostream &os)
 
 }
 
-std::istream Shape::in(std::istream &is)
+void Shape::in(std::istream &is)
 {
     std::string str;
     int x;

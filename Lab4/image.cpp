@@ -12,9 +12,6 @@ Image::Image(const Image& from){
 }
 
 Image::~Image(){
-    for(Shape* i: shapeList){
-        delete i;
-    }
     shapeList.clear();
 }
 
@@ -24,7 +21,6 @@ Image &Image::operator=(const Image &rhs) {
 }
 
 void Image::add(Shape* addShape) {
-    //shapeList.push_back((Shape*)addShape->clone());
     shapeList.push_back(addShape);
 }
 
@@ -44,14 +40,11 @@ void Image::in(std::istream &is) {
     std::string str;
     while(is >> str){
         if(str.compare("L") == 0){
-            std::cout << "ITS FUCKEN LINE";
-            std::cout << str;
             Line* s = new Line();
             s->in(is);
             this->add(s);
         }
         else if(str.compare("T") == 0){
-             std::cout << "HELLO THERE";
             Triangle* s = new Triangle();
             s->in(is);
             this->add(s);
@@ -61,9 +54,5 @@ void Image::in(std::istream &is) {
 }
 
 void Image::erase() {
-    for (unsigned int i = 0; i < shapeList.size(); i++)
-    {
-        delete shapeList[i];
-    }
-    shapeList.erase(shapeList.begin());
+    shapeList.clear();
 }

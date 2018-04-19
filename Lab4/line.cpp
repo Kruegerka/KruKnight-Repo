@@ -43,7 +43,6 @@ void Line::out(std::ostream &os)
     x = p1[0][0];
     y = p1[0][1];
     z = p1[0][2];
-    //std::cout<< p2;
     os << p1[0][0] << " ";
     os << p1[0][1] << " ";
     os << p1[0][2] << " ";
@@ -64,12 +63,10 @@ void Line::in(std::istream &is)
     is >> x;
     is >> y;
     is >> z;
-    std::cout<<"the line has " << x << " " << y << " " << z;
     p1[0][0] = x;
     p1[0][1] = y;
     p1[0][2] = z;
     p1[0][3] = 1.0;
-    std::cout<<"the line has " << x << " " << y << " " << z;
     is >> x;
     is >> y;
     is >> z;

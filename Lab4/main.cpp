@@ -12,7 +12,7 @@ int main(void)
 	GraphicsContext *gc = new X11Context(800, 600, GraphicsContext::BLACK);
 	sleep(1);
 
-	std::istringstream pointToReadIn("L 65280 1 2 3 500 500 0 T 65520 0 0 0 500 600 0 500 0 0 \n");
+	std::istringstream pointToReadIn("L 65280 0 0 0 500 500 0 T 65520 0 0 0 500 600 0 500 0 0 \n");
 	matrix m1 = matrix(1, 4);
 	matrix m2 = matrix(1, 4);
 	m2[0][0] = 500;
@@ -30,9 +30,10 @@ int main(void)
 	i1.out(std::cout);
 	Image i2 = Image();
 	std::cout << std::endl;
-	i2.in(pointToReadIn);
-	std::cout << "YOU SHALL NOT PASS";
-	i2.out(std::cout);
+	i2 = i1;
+	i2.erase();
+	i1.erase();
+	i1.in(pointToReadIn);
 	std::cout << std::endl;
 	i1.draw(gc);
 	sleep(5);

@@ -22,6 +22,8 @@ class X11Context : public GraphicsContext
 		void setColor(unsigned int color);
 		void setPixel(int x, int y);
 		unsigned int getPixel(int x, int y);
+		void draw_line(int x1, int y1, int x2, int y2);
+		void draw_circle(int x, int y, int radius);
 		void clear();
 
 		/*

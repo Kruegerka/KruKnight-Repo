@@ -33,6 +33,7 @@ void Image::draw(GraphicsContext* gContext) {
 void Image::out(std::ostream &os) {
     for(unsigned int i = 0; i<shapeList.size(); i++){
         shapeList[i]->out(os);
+        os << std::endl;
     }
 }
 

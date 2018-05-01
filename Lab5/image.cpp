@@ -57,3 +57,7 @@ void Image::in(std::istream &is) {
 void Image::erase() {
     shapeList.clear();
 }
+
+int Image::getSize(){
+    return shapeList.size();
+}

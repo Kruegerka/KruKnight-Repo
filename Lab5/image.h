@@ -15,9 +15,10 @@
 
 class Image{
     protected:
-    std::vector<Shape*> shapeList;
+    
     
     public:
+    std::vector<Shape*> shapeList;
         /** 
          * @brief  Method used for overriding the equal operator for copying the object
          * @param  rhs: objected to be copied
@@ -67,6 +68,8 @@ class Image{
          * @retval current object
          */
         Image(const Image& from);
+
+        int getSize();
 };
 
 

@@ -4,6 +4,7 @@
 #include "drawbase.h"
 #include "image.h"
 #include <fstream>
+#include "ViewContext.h"
 
 
 class GraphicsContext;
@@ -24,11 +25,18 @@ class MyDrawing : public DrawingBase{
         int x2;
         int y2;
         Image CurrentImage;
+        ViewContext VC;
         bool dragging;
         bool triangle1;
         bool triangle2;
         bool point;
         bool line;
+        bool scalingIn;
+        bool scalingOut;
+        bool rotationL;
+        bool traslationL;
+        bool rotationR;
+        bool traslationR;
         unsigned int currentColor;
 
 };

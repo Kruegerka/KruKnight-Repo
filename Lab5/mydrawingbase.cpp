@@ -7,6 +7,12 @@ MyDrawing::MyDrawing(){
     triangle2 = false;
     point = false;
     line = true;
+    scalingIn=false;
+    scalingOut=false;
+    rotationL=false;
+    traslationL=false;
+    rotationR=false;
+    traslationR=false;
     x0=0;
     y0=0;
     x1=0;
@@ -17,18 +23,8 @@ MyDrawing::MyDrawing(){
 }
 
 void MyDrawing::paint(GraphicsContext* gc){
-    int middlex = gc->getWindowWidth()/2;
-    int middley = gc->getWindowHeight()/2;
-
-    gc->setColor(GraphicsContext::MAGENTA);
-    for(int yi=middley-50;yi<=middley+50;yi++){
-        gc->drawLine(middlex-50,yi,middlex+50,yi);
-    }
-
-    gc->setColor(GraphicsContext::GREEN);
-    currentColor = GraphicsContext::GREEN;
-    gc->drawLine(x0,y0,x1,y1);
-
+    gc->clear();
+    CurrentImage.draw(gc);
     return;
 }
 
@@ -146,6 +142,12 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
     line = false;
     triangle1 = false;
     triangle2 =false;
+    scalingIn=false;
+    scalingOut=false;
+    rotationL=false;
+    traslationL=false;
+    rotationR=false;
+    traslationR=false;
     if(keycode == 'p'){
         point = true;
         std::cout << "Point" << std::endl;
@@ -158,7 +160,7 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
         triangle1 = true;
         std::cout << "Triangle" << std::endl;
     }
-    else if(keycode == 's'){
+    else if(keycode == 'o'){
         std::cout << "Save" << std::endl;
         std::ofstream myfile ("Output.txt");
         if (myfile.is_open())
@@ -174,6 +176,47 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
         gc->setMode(GraphicsContext::MODE_NORMAL);
         CurrentImage.draw(gc);
         gc->setMode(GraphicsContext::MODE_XOR);
+    }
+    else if(keycode == '1'){
+        gc->setColor(GraphicsContext::WHITE);
+        currentColor = GraphicsContext::WHITE;
+    }
+    else if(keycode == '2'){
+        gc->setColor(GraphicsContext::GREEN);
+        currentColor = GraphicsContext::GREEN;
+    }
+    else if(keycode == '3'){
+        gc->setColor(GraphicsContext::RED);
+        currentColor = GraphicsContext::RED;
+    }
+    else if(keycode == 65361){
+        std::cout << "Left" << std::endl;
+        traslationL = true;
+    }
+    else if(keycode == 65363){
+        std::cout << "Right" << std::endl;
+        traslationR = true;
+    }
+    else if(keycode == 65362){
+        std::cout << "Up" << std::endl;
+        rotationL = true;
+    }
+    else if(keycode == 65364){
+        std::cout << "Down" << std::endl;
+        rotationR = true;
+    }
+    else if(keycode == 61){
+        std::cout << "ScaleIn" << std::endl;
+        scalingIn = true;
+        VC.scaleIn(gc, CurrentImage);
+    }
+    else if(keycode == 45){
+        std::cout << "ScaleOut" << std::endl;
+        scalingOut = true;
+    }
+    else if(keycode == 'r'){
+        std::cout << "Reset" << std::endl;
+        gc->clear();
     }
 
 }

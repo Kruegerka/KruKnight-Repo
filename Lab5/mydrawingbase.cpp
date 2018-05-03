@@ -17,6 +17,7 @@ MyDrawing::MyDrawing(){
 }
 
 void MyDrawing::paint(GraphicsContext* gc){
+    gc->setColor(currentColor);
     gc->clear();
     CurrentImage.draw(gc,VC);
     return;
@@ -180,6 +181,7 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
         std::cout << "Load" << std::endl;
         std::ifstream myfile ("Output.txt");
         CurrentImage.in(myfile);
+        gc->clear();
         gc->setMode(GraphicsContext::MODE_NORMAL);
         CurrentImage.draw(gc);
         gc->setMode(GraphicsContext::MODE_XOR);

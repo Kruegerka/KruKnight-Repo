@@ -45,6 +45,13 @@ class Line: public Shape{
          * @retval None
          */
         void draw(GraphicsContext* gContext);
+        
+        /** 
+         * @brief  Draws the current object to the gContext
+         * @param  gContext: file for drawing the shape
+         * @param  VC Viewcontext object containing transformation matrix
+         * @retval None
+         */
         void draw(GraphicsContext *gContext, ViewContext VC);
         
         /** 

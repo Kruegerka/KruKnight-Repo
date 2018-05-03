@@ -196,26 +196,32 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
         gc->setColor(GraphicsContext::RED);
         currentColor = GraphicsContext::RED;
     }
+    //Left arrow
     else if(keycode == 65361){
         VC.traslation(-10,0,0);
         paint(gc);
     }
+    //right arrow
     else if(keycode == 65363){
         VC.traslation(10,0,0);
         paint(gc);
     }
+    //up arrow
     else if(keycode == 65362){
         VC.rotation(0,0,3.14/20);
         paint(gc);
     }
+    //down arrow
     else if(keycode == 65364){
         VC.rotation(0,0,-3.14/20);
         paint(gc);
     }
+    //+
     else if(keycode == 61){
         VC.scale(2,2,2);
         paint(gc);
     }
+    //-
     else if(keycode == 45){
         VC.scale(0.5,0.5,0.5);
         paint(gc);

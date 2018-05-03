@@ -7,12 +7,6 @@ MyDrawing::MyDrawing(){
     triangle2 = false;
     point = false;
     line = true;
-    scalingIn=false;
-    scalingOut=false;
-    rotationL=false;
-    traslationL=false;
-    rotationR=false;
-    traslationR=false;
     x0=0;
     y0=0;
     x1=0;
@@ -24,7 +18,7 @@ MyDrawing::MyDrawing(){
 
 void MyDrawing::paint(GraphicsContext* gc){
     gc->clear();
-    CurrentImage.draw(gc);
+    CurrentImage.draw(gc,VC);
     return;
 }
 
@@ -66,12 +60,20 @@ void MyDrawing::mouseButtonUp(GraphicsContext* gc, unsigned int button, int x, i
             y1=y;
             gc->setMode(GraphicsContext::MODE_NORMAL);
             gc->drawLine(x0,y0,x1,y1);
-            matrix m1 = matrix(1,4);
-            matrix m2 = matrix(1,4);
+            matrix m1 = matrix(4,1);
+            matrix m2 = matrix(4,1);
             m1[0][0] = x0;
-            m1[0][1] = y0;
+            m1[1][0] = y0;
+            m1[2][0] = 0;
+            m1[3][0] = 1;
             m2[0][0] = x1;
-            m2[0][1] = y1;
+            m2[1][0] = y1;
+            m2[2][0] = 0;
+            m2[3][0] = 1;
+
+            m1 = VC.applyInverse(m1);
+            m2 = VC.applyInverse(m2);
+
             Line* s = new Line(currentColor, m1, m2);
             CurrentImage.add(s);
         }
@@ -91,16 +93,27 @@ void MyDrawing::mouseButtonUp(GraphicsContext* gc, unsigned int button, int x, i
             gc->setMode(GraphicsContext::MODE_NORMAL);
             gc->drawLine(x0,y0,x1,y1);
             gc->drawLine(x1,y1,x2,y2);
-            matrix m1 = matrix(1,4);
-            matrix m2 = matrix(1,4);
-            matrix m3 = matrix(1,4);
-            m1[0][0] = x0;
-            m1[0][1] = y0;
-            m2[0][0] = x1;
-            m2[0][1] = y1;
-            m3[0][0] = x2;
-            m3[0][1] = y2;
 
+            matrix m1 = matrix(4,1);
+            matrix m2 = matrix(4,1);
+            matrix m3 = matrix(4,1);
+            m1[0][0] = x0;
+            m1[1][0] = y0;
+            m1[2][0] = 0;
+            m1[3][0] = 1;
+            m2[0][0] = x1;
+            m2[1][0] = y1;
+            m2[2][0] = 0;
+            m2[3][0] = 1;
+            m3[0][0] = x2;
+            m3[1][0] = y2;
+            m3[2][0] = 0;
+            m3[3][0] = 1;
+
+            m1 = VC.applyInverse(m1);
+            m2 = VC.applyInverse(m2);
+            m3 = VC.applyInverse(m3);
+            
             Triangle* s = new Triangle(currentColor, m1, m2, m3);
             CurrentImage.add(s);
             triangle2 = false;
@@ -141,13 +154,7 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
     point = false;
     line = false;
     triangle1 = false;
-    triangle2 =false;
-    scalingIn=false;
-    scalingOut=false;
-    rotationL=false;
-    traslationL=false;
-    rotationR=false;
-    traslationR=false;
+    triangle2 = false;
     if(keycode == 'p'){
         point = true;
         std::cout << "Point" << std::endl;
@@ -190,29 +197,28 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
         currentColor = GraphicsContext::RED;
     }
     else if(keycode == 65361){
-        std::cout << "Left" << std::endl;
-        traslationL = true;
+        VC.traslation(-10,0,0);
+        paint(gc);
     }
     else if(keycode == 65363){
-        std::cout << "Right" << std::endl;
-        traslationR = true;
+        VC.traslation(10,0,0);
+        paint(gc);
     }
     else if(keycode == 65362){
-        std::cout << "Up" << std::endl;
-        rotationL = true;
+        VC.rotation(0,0,3.14/20);
+        paint(gc);
     }
     else if(keycode == 65364){
-        std::cout << "Down" << std::endl;
-        rotationR = true;
+        VC.rotation(0,0,-3.14/20);
+        paint(gc);
     }
     else if(keycode == 61){
-        std::cout << "ScaleIn" << std::endl;
-        scalingIn = true;
-        VC.scaleIn(gc, CurrentImage);
+        VC.scale(2,2,2);
+        paint(gc);
     }
     else if(keycode == 45){
-        std::cout << "ScaleOut" << std::endl;
-        scalingOut = true;
+        VC.scale(0.5,0.5,0.5);
+        paint(gc);
     }
     else if(keycode == 'r'){
         std::cout << "Reset" << std::endl;

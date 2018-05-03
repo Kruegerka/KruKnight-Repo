@@ -7,11 +7,12 @@
 #define TRIANGLE
 
 #include "shape.h"
+#include "ViewContext.h"
 
 class Triangle: public Shape{
     protected:
-        matrix p2 = matrix(1,4);
-        matrix p3 = matrix(1,4);
+        matrix p2 = matrix(4,1);
+        matrix p3 = matrix(4,1);
         /** 
          * @brief  Method used for overriding the equal operator for copying the object
          * @param  rhs: objected to be copied
@@ -45,6 +46,7 @@ class Triangle: public Shape{
          * @retval None
          */
         void draw(GraphicsContext* gContext);
+        void draw(GraphicsContext* gContext, ViewContext VC);
 
         /** 
          * @brief  Prints out the current Object

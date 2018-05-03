@@ -3,7 +3,7 @@
 Shape::Shape(unsigned int Color, matrix &point1)
 {
     p1 = point1;
-    p1[0][3] = 1.0;
+    p1[3][0] = 1.0;
     shapeColor = Color;
 }
 

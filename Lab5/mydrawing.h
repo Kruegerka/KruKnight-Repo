@@ -31,12 +31,6 @@ class MyDrawing : public DrawingBase{
         bool triangle2;
         bool point;
         bool line;
-        bool scalingIn;
-        bool scalingOut;
-        bool rotationL;
-        bool traslationL;
-        bool rotationR;
-        bool traslationR;
         unsigned int currentColor;
 
 };

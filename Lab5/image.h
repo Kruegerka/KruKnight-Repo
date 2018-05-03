@@ -39,6 +39,7 @@ class Image{
          * @retval None
          */
         void draw(GraphicsContext* gContext);
+        void draw(GraphicsContext* gContext, ViewContext VC);
 
         /** 
          * @brief  Prints out the Vector of shapes

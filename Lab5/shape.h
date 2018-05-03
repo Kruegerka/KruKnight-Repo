@@ -11,11 +11,12 @@
 #include <string>
 #include "gcontext.h"
 #include "matrix.h"
+#include "ViewContext.h"
 
 class Shape{
     protected:
         unsigned int shapeColor;
-        matrix p1 = matrix(1,4);
+        matrix p1 = matrix(4,1);
 
         /** 
          * @brief  Method used for overriding the equal operator for copying the object
@@ -62,6 +63,7 @@ class Shape{
          */
         virtual void draw(GraphicsContext* gContext)=0;
 
+        virtual void draw(GraphicsContext* gContext,ViewContext VC)=0;
         /** 
          * @brief  makes a new clone of current object then returns it
          * @retval cloned object

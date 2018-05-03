@@ -30,6 +30,12 @@ void Image::draw(GraphicsContext* gContext) {
     }
 }
 
+void Image::draw(GraphicsContext* gContext, ViewContext VC) {
+    for(unsigned int i = 0; i<shapeList.size(); i++){
+        shapeList[i]->draw(gContext, VC);
+    }
+}
+
 void Image::out(std::ostream &os) {
     for(unsigned int i = 0; i<shapeList.size(); i++){
         shapeList[i]->out(os);

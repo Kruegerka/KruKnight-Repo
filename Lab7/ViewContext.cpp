@@ -7,16 +7,16 @@ ViewContext::ViewContext(){
 };
 
 matrix ViewContext::applyTransform(matrix theMatrix){
-    std::cout << "transform" << std::endl;
-    std::cout << theMatrix << std::endl;
-    std::cout << transform << std::endl;
+    //std::cout << "transform" << std::endl;
+    //std::cout << theMatrix << std::endl;
+    //std::cout << transform << std::endl;
     return transform * theMatrix;
 }
 
 matrix ViewContext::applyInverse(matrix theMatrix){
-    std::cout << "inverse" << std::endl;
-    std::cout << theMatrix << std::endl;
-    std::cout << invTransform << std::endl;
+    //std::cout << "inverse" << std::endl;
+    //std::cout << theMatrix << std::endl;
+    //std::cout << invTransform << std::endl;
     return invTransform * theMatrix;
 }
 

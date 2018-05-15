@@ -121,7 +121,6 @@ void Triangle::inSTL(std::istream &is)
     int x;
     int y;
     int z;
-    is >> shapeColor; 
     is >> x;
     is >> y;
     is >> z;
@@ -145,9 +144,6 @@ void Triangle::inSTL(std::istream &is)
     p3[1][0] = y;
     p3[2][0] = z;
     p3[3][0] = 1.0;
-    std::cout << p1 << std::endl;
-    std::cout << p2 << std::endl;
-    std::cout << p3 << std::endl;
 }
 
 Shape* Triangle::clone(){

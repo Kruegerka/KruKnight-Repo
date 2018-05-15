@@ -156,6 +156,7 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
     line = false;
     triangle1 = false;
     triangle2 = false;
+    //std::cout << keycode <<std::endl;
     if(keycode == 'p'){
         point = true;
         std::cout << "Point" << std::endl;
@@ -210,11 +211,37 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
     }
     //up arrow
     else if(keycode == 65362){
-        VC.rotation(0,0,3.14/20);
+        VC.traslation(0,-10,0);
+        //VC.rotation(0,0,3.14/20);
         paint(gc);
     }
     //down arrow
     else if(keycode == 65364){
+        VC.traslation(0,10,0);
+        //VC.rotation(0,0,-3.14/20);
+        paint(gc);
+    }
+    else if(keycode == 'w'){
+        VC.rotation(0,3.14/20,0);
+        paint(gc);
+    }
+    else if(keycode == 's'){
+        VC.rotation(0,-3.14/20,0);
+        paint(gc);
+    }
+    else if(keycode == 'a'){
+        VC.rotation(3.14/20,0,0);
+        paint(gc);
+    }
+    else if(keycode == 'd'){
+        VC.rotation(-3.14/20,0,0);
+        paint(gc);
+    }
+    else if(keycode == 'q'){
+        VC.rotation(0,0,3.14/20);
+        paint(gc);
+    }
+    else if(keycode == 'e'){
         VC.rotation(0,0,-3.14/20);
         paint(gc);
     }

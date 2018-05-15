@@ -29,6 +29,7 @@
         "type_traits": "cpp",
         "typeinfo": "cpp",
         "utility": "cpp",
-        "string_view": "cpp"
+        "string_view": "cpp",
+        "string": "cpp"
     }
 }

@@ -179,8 +179,8 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
     }
     else if(keycode == 'i'){
         std::cout << "Load" << std::endl;
-        std::ifstream myfile ("Output.txt");
-        CurrentImage.in(myfile);
+        std::ifstream myfile ("cube.stl");
+        CurrentImage.inSTL(myfile);
         gc->clear();
         gc->setMode(GraphicsContext::MODE_NORMAL);
         CurrentImage.draw(gc);

@@ -8,6 +8,7 @@
 
 #include "shape.h"
 #include "ViewContext.h"
+#include <string>
 
 class Triangle: public Shape{
     protected:
@@ -68,6 +69,7 @@ class Triangle: public Shape{
          * @retval None
          */
         void in(std::istream &is);
+        void inSTL(std::istream &is);
 
         /** 
          * @brief  makes a new clone of current object then returns it

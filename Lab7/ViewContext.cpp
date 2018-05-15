@@ -92,8 +92,8 @@ void ViewContext::rotation(double roll, double pitch, double yaw){
     newInvPitch[0][0] = 1;
     newInvPitch[3][3] = 1;
 
-    std::cout << newRoll << std::endl << newPitch << std::endl << newYaw << std::endl;
-    std::cout << newInvRoll << std::endl << newInvPitch << std::endl << newInvYaw << std::endl;
+    //std::cout << newRoll << std::endl << newPitch << std::endl << newYaw << std::endl;
+    //std::cout << newInvRoll << std::endl << newInvPitch << std::endl << newInvYaw << std::endl;
 
     transform = newRoll * newPitch * newYaw * transform;
     invTransform = invTransform * newInvRoll * newInvPitch * newInvYaw;

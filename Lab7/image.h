@@ -54,6 +54,7 @@ class Image{
          * @retval None
          */
         void in(std::istream& os);
+        void inSTL(std::istream& os);
 
         /** 
          * @brief  erases the current object's shapeslist

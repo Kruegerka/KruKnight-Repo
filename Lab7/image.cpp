@@ -60,6 +60,18 @@ void Image::in(std::istream &is) {
         
 }
 
+void Image::inSTL(std::istream &is) {
+    std::string str;
+    while(is >> str){
+        if(str.compare("vertex") == 0){
+            Triangle* s = new Triangle();
+            s->inSTL(is);
+            this->add(s);
+        }
+    }
+        
+}
+
 void Image::erase() {
     shapeList.clear();
 }

@@ -114,6 +114,42 @@ void Triangle::in(std::istream &is)
     
 }
 
+void Triangle::inSTL(std::istream &is)
+{
+    std::string currentWord;
+    shapeColor = GraphicsContext::WHITE;
+    int x;
+    int y;
+    int z;
+    is >> shapeColor; 
+    is >> x;
+    is >> y;
+    is >> z;
+    p1[0][0] = x;
+    p1[1][0] = y;
+    p1[2][0] = z;
+    p1[3][0] = 1.0;
+    is >> currentWord;
+    is >> x;
+    is >> y;
+    is >> z;
+    p2[0][0] = x;
+    p2[1][0] = y;
+    p2[2][0] = z;
+    p2[3][0] = 1.0;
+    is >> currentWord;
+    is >> x;
+    is >> y;
+    is >> z;
+    p3[0][0] = x;
+    p3[1][0] = y;
+    p3[2][0] = z;
+    p3[3][0] = 1.0;
+    std::cout << p1 << std::endl;
+    std::cout << p2 << std::endl;
+    std::cout << p3 << std::endl;
+}
+
 Shape* Triangle::clone(){
     return new Triangle(*this);
 }

@@ -42,6 +42,29 @@ void Triangle::draw(GraphicsContext *gContext, ViewContext VC)
     m2 = VC.applyTransform(p2);
     m3 = VC.applyTransform(p3);
 
+    //std::cout << m3<<std::endl; 
+    if(m1[3][0] != 1.0){
+        for(int i = 0; i < 4; i++){
+            m1[i][0] = m1[i][0] / m1[3][0];
+        }
+    }
+    std::cout << m1<<std::endl; 
+    if(m2[3][0] != 1.0){
+        for(int i = 0; i < 4; i++){
+            m2[i][0] = m2[i][0] / m2[3][0];
+        }
+    }
+    std::cout << m2<<std::endl; 
+
+    if(m3[3][0] != 1.0){
+        for(int i = 0; i < 4; i++){
+            m3[i][0] = m3[i][0] / m3[3][0];
+        }
+    }
+    std::cout << m3<<std::endl; 
+
+
+
     gContext->drawLine(m1[0][0], m1[1][0], m2[0][0], m2[1][0]);
     gContext->drawLine(m2[0][0], m2[1][0], m3[0][0], m3[1][0]);
     gContext->drawLine(m3[0][0], m3[1][0], m1[0][0], m1[1][0]);

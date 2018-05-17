@@ -69,7 +69,20 @@ void Image::inSTL(std::istream &is) {
             this->add(s);
         }
     }
-        
+    matrix m1 = matrix(4,1);
+    matrix m2 = matrix(4,1);
+    m1[3][0]=1.0;
+    m2[0][0]=10;
+    m2[3][0]=1.0;
+    this->add(new Line(GraphicsContext::GREEN, m1, m2));
+    m2[0][0]=0;
+    m2[1][0]=10;
+    m2[3][0]=1.0;
+    this->add(new Line(GraphicsContext::RED, m1, m2));
+    m2[1][0]=0;
+    m2[2][0]=10;
+    m2[3][0]=1.0;
+    this->add(new Line(GraphicsContext::BLUE, m1, m2));
 }
 
 void Image::erase() {

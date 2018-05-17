@@ -12,6 +12,12 @@ class ViewContext
     protected:
     matrix invTransform = matrix(4,4);
     matrix transform = matrix(4,4);
+    matrix invRotateTransform = matrix(4,4);
+    matrix RotateTransform = matrix(4,4);
+    matrix invTranslationTransform = matrix(4,4);
+    matrix TranslationTransform = matrix(4,4);
+    matrix invScaleTransform = matrix(4,4);
+    matrix ScaleTransform = matrix(4,4);
 
 	public:
 		ViewContext();
@@ -56,6 +62,8 @@ class ViewContext
          * @retval None
          */
         void traslation(double x, double y, double z);
+
+        matrix PerspectiveTransform(double angle, double far, double near);
 		
 };
 #endif

@@ -185,7 +185,7 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
         gc->clear();
         gc->setMode(GraphicsContext::MODE_NORMAL);
         CurrentImage.draw(gc);
-        gc->setMode(GraphicsContext::MODE_XOR);
+        
     }
     else if(keycode == '1'){
         gc->setColor(GraphicsContext::WHITE);

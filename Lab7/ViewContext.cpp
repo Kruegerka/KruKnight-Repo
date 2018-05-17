@@ -4,12 +4,21 @@
 ViewContext::ViewContext(){
     transform = matrix::identity(4);
     invTransform = matrix::identity(4);
+    invRotateTransform = matrix::identity(4);
+    RotateTransform = matrix::identity(4);
+    invTranslationTransform = matrix::identity(4);
+    TranslationTransform = matrix::identity(4);
+    invScaleTransform = matrix::identity(4);
+    ScaleTransform = matrix::identity(4);
+
+    
 };
 
 matrix ViewContext::applyTransform(matrix theMatrix){
     //std::cout << "transform" << std::endl;
     //std::cout << theMatrix << std::endl;
     //std::cout << transform << std::endl;
+    transform = PerspectiveTransform(90,1,100) * ((TranslationTransform * RotateTransform) * ScaleTransform);
     return transform * theMatrix;
 }
 
@@ -32,8 +41,8 @@ void ViewContext::scale(double x, double y, double z){
     newIvnScale[1][1] = 1/y;
     newIvnScale[2][2] = 1/z;
 
-    transform = newScale * transform;
-    invTransform = invTransform * newIvnScale;
+    ScaleTransform = newScale * ScaleTransform;
+    invScaleTransform = invScaleTransform * newIvnScale;
 }
 
 
@@ -95,8 +104,8 @@ void ViewContext::rotation(double roll, double pitch, double yaw){
     //std::cout << newRoll << std::endl << newPitch << std::endl << newYaw << std::endl;
     //std::cout << newInvRoll << std::endl << newInvPitch << std::endl << newInvYaw << std::endl;
 
-    transform = newRoll * newPitch * newYaw * transform;
-    invTransform = invTransform * newInvRoll * newInvPitch * newInvYaw;
+    RotateTransform = newRoll * newPitch * newYaw * RotateTransform;
+    invRotateTransform = invRotateTransform * newInvRoll * newInvPitch * newInvYaw;
 }
 
 void ViewContext::traslation(double x, double y, double z){
@@ -110,6 +119,21 @@ void ViewContext::traslation(double x, double y, double z){
     newInvTranslate[1][3] = -y;
     newInvTranslate[2][3] = -z;
 
-    transform = newTranslate * transform;
-    invTransform = invTransform * newInvTranslate;
+    TranslationTransform = newTranslate * TranslationTransform;
+    invTranslationTransform = invTranslationTransform * newInvTranslate;
+}
+
+
+matrix ViewContext::PerspectiveTransform(double angle, double far, double near){
+
+    matrix PerspectiveTransform = matrix(4,4);
+
+    PerspectiveTransform[0][0] = 1.0/tan(angle * 0.5 * M_PI /180);
+    PerspectiveTransform[1][1] = 1.0/tan(angle * 0.5 * M_PI /180);
+    PerspectiveTransform[2][2] = -far / (far - near);
+    PerspectiveTransform[3][2] = -(far * near) / (far - near);
+    PerspectiveTransform[3][3] = 1;
+
+    return PerspectiveTransform;
+
 }

@@ -1,4 +1,5 @@
 #include "triangle.h"
+#include <cmath>
 
 
 Triangle::Triangle(){
@@ -26,9 +27,9 @@ Triangle::~Triangle()
 void Triangle::draw(GraphicsContext *gContext)
 {
     gContext->setColor(shapeColor);
-    gContext->drawLine(p1[0][0], p1[1][0], p2[0][0], p2[1][0]);
-    gContext->drawLine(p2[0][0], p2[1][0], p3[0][0], p3[1][0]);
-    gContext->drawLine(p3[0][0], p3[1][0], p1[0][0], p1[1][0]);
+    gContext->drawLine(p1[0][0]+400+(p1[2][0]*cos(M_PI/3)),300-p1[1][0]-(p1[2][0]*0.5),p2[0][0]+400+(p2[2][0]*cos(M_PI/3)),300-p2[1][0]-(p2[2][0]*0.5));
+    gContext->drawLine(p1[0][0]+400+(p1[2][0]*cos(M_PI/3)),300-p1[1][0]-(p1[2][0]*0.5),p3[0][0]+400+(p3[2][0]*cos(M_PI/3)),300-p3[1][0]-(p3[2][0]*0.5));
+    gContext->drawLine(p2[0][0]+400+(p2[2][0]*cos(M_PI/3)),300-p2[1][0]-(p2[2][0]*0.5),p3[0][0]+400+(p3[2][0]*cos(M_PI/3)),300-p3[1][0]-(p3[2][0]*0.5));
 }
 
 void Triangle::draw(GraphicsContext *gContext, ViewContext VC)
@@ -42,6 +43,7 @@ void Triangle::draw(GraphicsContext *gContext, ViewContext VC)
     m2 = VC.applyTransform(p2);
     m3 = VC.applyTransform(p3);
 
+/*
     //std::cout << m3<<std::endl; 
     if(m1[3][0] != 1.0){
         for(int i = 0; i < 4; i++){
@@ -62,12 +64,16 @@ void Triangle::draw(GraphicsContext *gContext, ViewContext VC)
         }
     }
     std::cout << m3<<std::endl; 
+*/
 
 
+    //gContext->drawLine(400+m1[0][0], 300-m1[1][0], 400+m2[0][0], 300-m2[1][0]);
+    //gContext->drawLine(400+m2[0][0], 300-m2[1][0], 400+m3[0][0], 300-m3[1][0]);
+    //gContext->drawLine(400+m3[0][0], 300-m3[1][0], 400+m1[0][0], 300-m1[1][0]);
 
-    gContext->drawLine(m1[0][0], m1[1][0], m2[0][0], m2[1][0]);
-    gContext->drawLine(m2[0][0], m2[1][0], m3[0][0], m3[1][0]);
-    gContext->drawLine(m3[0][0], m3[1][0], m1[0][0], m1[1][0]);
+    gContext->drawLine(m1[0][0]+400+(m1[2][0]*cos(M_PI/3)),300-m1[1][0]-(m1[2][0]*0.5),m2[0][0]+400+(m2[2][0]*cos(M_PI/3)),300-m2[1][0]-(m2[2][0]*0.5));
+    gContext->drawLine(m1[0][0]+400+(m1[2][0]*cos(M_PI/3)),300-m1[1][0]-(m1[2][0]*0.5),m3[0][0]+400+(m3[2][0]*cos(M_PI/3)),300-m3[1][0]-(m3[2][0]*0.5));
+    gContext->drawLine(m2[0][0]+400+(m2[2][0]*cos(M_PI/3)),300-m2[1][0]-(m2[2][0]*0.5),m3[0][0]+400+(m3[2][0]*cos(M_PI/3)),300-m3[1][0]-(m3[2][0]*0.5));
 }
 
 

@@ -156,7 +156,6 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
     line = false;
     triangle1 = false;
     triangle2 = false;
-    //std::cout << keycode <<std::endl;
     if(keycode == 'p'){
         point = true;
         std::cout << "Point" << std::endl;
@@ -184,7 +183,7 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
         CurrentImage.inSTL(myfile);
         gc->clear();
         gc->setMode(GraphicsContext::MODE_NORMAL);
-        CurrentImage.draw(gc);
+        CurrentImage.draw(gc,VC);
         
     }
     else if(keycode == '1'){
@@ -218,6 +217,17 @@ void MyDrawing::keyDown(GraphicsContext* gc, unsigned int keycode){
     //down arrow
     else if(keycode == 65364){
         VC.traslation(0,10,0);
+        //VC.rotation(0,0,-3.14/20);
+        paint(gc);
+    }
+    else if(keycode == 91){
+        VC.traslation(0,0,-1);
+        //VC.rotation(0,0,3.14/20);
+        paint(gc);
+    }
+    //down arrow
+    else if(keycode == 93){
+        VC.traslation(0,0,1);
         //VC.rotation(0,0,-3.14/20);
         paint(gc);
     }

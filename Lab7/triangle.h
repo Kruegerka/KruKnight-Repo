@@ -69,6 +69,12 @@ class Triangle: public Shape{
          * @retval None
          */
         void in(std::istream &is);
+
+        /** 
+         * @brief  Reads in a STL file and converts it to an object
+         * @param  &is: inputstream
+         * @retval None
+         */
         void inSTL(std::istream &is);
 
         /** 

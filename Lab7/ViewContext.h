@@ -63,6 +63,12 @@ class ViewContext
          */
         void traslation(double x, double y, double z);
 
+        /** 
+         * @brief  conveter the object to a 2d display perspective
+         * @param  angle: angle tlwards the object
+         * @param  far: distance to object from camera
+         * @param  near: location of the cammera
+         */
         matrix PerspectiveTransform(double angle, double far, double near);
 		
 };

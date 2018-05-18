@@ -18,7 +18,7 @@ matrix ViewContext::applyTransform(matrix theMatrix){
     //std::cout << "transform" << std::endl;
     //std::cout << theMatrix << std::endl;
     //std::cout << transform << std::endl;
-    transform = PerspectiveTransform(90,1,100) * ((TranslationTransform * RotateTransform) * ScaleTransform);
+    transform = PerspectiveTransform(90,100,1) * ((TranslationTransform * RotateTransform) * ScaleTransform);
     return transform * theMatrix;
 }
 
@@ -133,7 +133,5 @@ matrix ViewContext::PerspectiveTransform(double angle, double far, double near){
     PerspectiveTransform[2][2] = -far / (far - near);
     PerspectiveTransform[3][2] = -(far * near) / (far - near);
     PerspectiveTransform[3][3] = 1;
-
     return PerspectiveTransform;
-
 }

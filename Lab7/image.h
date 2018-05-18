@@ -54,6 +54,12 @@ class Image{
          * @retval None
          */
         void in(std::istream& os);
+
+        /** 
+         * @brief  Reads in a STL file and converts it to an object
+         * @param  &is: inputstream
+         * @retval None
+         */
         void inSTL(std::istream& os);
 
         /** 
